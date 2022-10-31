@@ -8,9 +8,11 @@ import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import CreateRestaurant from "./components/createRestaurant";
-import CreateIngredient from "./components/createIngredients";
+import CreateIngredient from "./components/createIngredient";
 import LandingPage from "./components/landingPage";
 import Homepage from "./components/home";
+import PurchaseIngredient from "./components/purchaseIngredient";
+import CreateFood from "./components/createFood";
  
 const App = () => {
  return (
@@ -25,7 +27,9 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/createRestaurant" element={<CreateRestaurant />} />
-        <Route path="/createIngredients" element={<CreateIngredient />} />
+        <Route path="/createIngredient" element={<CreateIngredient />} />
+        <Route path="/purchaseIngredient" element={<PurchaseIngredient />} />
+        <Route path="/createFood" element={<CreateFood />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/home/:location" element={<Homepage />} />
       </Routes>

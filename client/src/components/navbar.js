@@ -28,10 +28,10 @@ export function NavBar() {
 								<a href={'/#'}>Create Order</a>
 							</li>
 							<li>
-								<a href="/#">Create Recipe</a>
+								<a href="/#">View Orders</a>
 							</li>
 							<li>
-								<a href="/#">ingredient Purchase</a>
+								<a href="/purchaseIngredient">Ingredient Purchase</a>
 							</li>
 						</ul>
 					</nav>

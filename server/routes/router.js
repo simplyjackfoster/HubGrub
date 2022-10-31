@@ -1,9 +1,9 @@
 const express = require("express");
  
-// recordRoutes is an instance of the express router.
+// router is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /restaurant.
-const recordRoutes = express.Router();
+const router = express.Router();
  
 // This will help us connect to the database
 const dbo = require("../db/conn");
@@ -13,7 +13,7 @@ const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the restaurants.
-recordRoutes.route("/restaurant").get(function (req, res) {
+router.route("/restaurant").get(function (req, res) {
  let db_connect = dbo.getDb("hubgrub_full_db");
  db_connect
    .collection("restaurant")
@@ -25,7 +25,7 @@ recordRoutes.route("/restaurant").get(function (req, res) {
 });
  
 // This section will help you get a single restaurant by id
-recordRoutes.route("/restaurant/:id").get(function (req, res) {
+router.route("/restaurant/:id").get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
@@ -37,7 +37,7 @@ recordRoutes.route("/restaurant/:id").get(function (req, res) {
 });
  
 // This section will help you create a new restaurant.
-recordRoutes.route("/restaurant/add").post(function (req, response) {
+router.route("/restaurant/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
    location: req.body.location,
@@ -50,21 +50,39 @@ recordRoutes.route("/restaurant/add").post(function (req, response) {
  });
 });
 
+
 // This section will help you create a new ingredient.
-recordRoutes.route("/ingredient/add").post(function (req, response) {
+router.route("/ingredient/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    quantity: req.body.quantity,
+    price: parseFloat(req.body.price),
+    calories: parseInt(req.body.calories),
+    units: req.body.units,
   };
   db_connect.collection("ingredient").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
  });
+
+
+ // This section will help you create a new recipe.
+router.route("/food/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    name: req.body.name,
+    price: parseFloat(req.body.price),
+  };
+  db_connect.collection("food").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+ });
+
  
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
+router.route("/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
@@ -84,7 +102,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 });
  
 // This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
+router.route("/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect.collection("restaurant").deleteOne(myquery, function (err, obj) {
@@ -94,4 +112,4 @@ recordRoutes.route("/:id").delete((req, response) => {
  });
 });
  
-module.exports = recordRoutes;
+module.exports = router;
