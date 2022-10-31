@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
  
-export default function CreateRestaurant() {
+export default function CreateIngredient() {
  const [form, setForm] = useState({
    location: "",
-   revenue: 0,
-   cost: 0,
+   revenue: "",
+   cost: "",
  });
  const navigate = useNavigate();
  
@@ -23,7 +23,7 @@ export default function CreateRestaurant() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch("http://localhost:5000/record/add", {
+   await fetch("http://localhost:5000/ingredient/add", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -35,30 +35,39 @@ export default function CreateRestaurant() {
      return;
    });
  
-   setForm({ location: "", revenue: "", cost: "" });
+   setForm({ name: "", quantity: ""});
    navigate("/");
  }
  
  // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Add a new restaurant</h3>
+     <h3>Record Ingredient Purchase</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="location">Restaurant Location</label>
+         <label htmlFor="name">Enter Ingredient Purchased</label>
          <input
            type="text"
            className="form-control"
-           id="location"
-           value={form.location}
-           onChange={(e) => updateForm({ location: e.target.value })}
+           id="name"
+           value={form.name}
+           onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
-       
+       <div className="form-group">
+         <label htmlFor="quantity">Enter Quantity</label>
+         <input
+           type="text"
+           className="form-control"
+           id="quantity"
+           value={form.quantity}
+           onChange={(e) => updateForm({ quantity: e.target.value })}
+         />
+       </div>
        <div className="form-group">
          <input
            type="submit"
-           value="Add a new restaurant"
+           value="Add a new ingredient"
            className="btn btn-primary"
          />
        </div>
