@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 export default function CreateIngredient() {
  const [form, setForm] = useState({
     name: "",
-    price: 0.00,
-    calories: 0,
+    price: "",
+    calories: "",
     units: "",
  });
  const navigate = useNavigate();
@@ -22,19 +22,21 @@ export default function CreateIngredient() {
    e.preventDefault();
  
    // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
+   const newIngredient = { ...form };
  
    await fetch("http://localhost:5000/ingredient/add", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
      },
-     body: JSON.stringify(newPerson),
+     body: JSON.stringify(newIngredient),
    })
    .catch(error => {
      window.alert(error);
      return;
    });
+
+   console.log(JSON.stringify(newIngredient));
  
    setForm({ name: "", price: 0.00, calories: 0, units: ""});
    navigate("/");

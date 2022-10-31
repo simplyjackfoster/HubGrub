@@ -21,19 +21,21 @@ export default function CreateRestaurant() {
    e.preventDefault();
  
    // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
+   const newRestaurant = { ...form };
  
    await fetch("http://localhost:5000/restaurant/add", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
      },
-     body: JSON.stringify(newPerson),
+     body: JSON.stringify(newRestaurant),
    })
    .catch(error => {
      window.alert(error);
      return;
    });
+
+   console.log(JSON.stringify(newRestaurant));
  
    setForm({ location: "", revenue: "", cost: "" });
    navigate("/");

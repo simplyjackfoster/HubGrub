@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 export default function CreateFood() {
  const [food, setFood] = useState({
    name: "",
-   price: 0.00,
+   price: "",
  });
  const navigate = useNavigate();
  
@@ -33,6 +33,8 @@ export default function CreateFood() {
      window.alert(error);
      return;
    });
+
+    console.log(JSON.stringify(newFood));
  
    setFood({ name: "", price: 0.00});
    navigate("/");
