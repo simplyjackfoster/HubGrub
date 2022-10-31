@@ -11,54 +11,55 @@ import { NavBar } from './navbar'
 import "bootstrap/dist/css/bootstrap.css";
 
  
-const currLocation = ((document.URL).substring((document.URL).lastIndexOf("/")+1)).replace('%20',' ');
-console.log(currLocation);
 
-const Restaurant = (props) => (
-    <option value={props.location.toString()}>{props.location.toString()}</option>
-  );
+
+// const Restaurant = (props) => (
+//     <option value={props.location.toString()}>{props.location.toString()}</option>
+//   );
 
 
 export default function Homepage() {
 
-    const [restaurants, setRestaurants] = useState([]);
+    // const [restaurants, setRestaurants] = useState([]);
 
     const navigate = useNavigate();
     const params = useParams();
 
-
+    const currLocation = ((document.URL).substring((document.URL).lastIndexOf("/")+1)).replace('%20',' ');
+    console.log(currLocation);
   
     // This method fetches the records from the database.
-    useEffect(() => {
-      async function getRestaurants() {
-        const response = await fetch(`http://localhost:5000/record/`);
+    // useEffect(() => {
+    //   async function getRestaurants() {
+    //     // TODO: change this to the correct URL
+    //     const response = await fetch(`http://localhost:5000/record/`);
   
-        if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          window.alert(message);
-          return;
-        }
+    //     if (!response.ok) {
+    //       const message = `An error occurred: ${response.statusText}`;
+    //       window.alert(message);
+    //       return;
+    //     }
   
-        const restaurants = await response.json();
-        setRestaurants(restaurants);
-      }
+    //     const restaurants = await response.json();
+    //     setRestaurants(restaurants);
+    //   }
   
-      getRestaurants();
+    //   getRestaurants();
   
-      return;
-    }, [restaurants.length]);
+    //   return;
+    // }, [restaurants.length]);
 
-    function restaurantList() {
-        return restaurants.map((restaurant) => {
-          return (
-            <Restaurant
-                id={restaurant._id}
-                location={restaurant.location}
-                key={restaurant._id}
-            />
-          );
-        });
-      }
+    // function restaurantList() {
+    //     return restaurants.map((restaurant) => {
+    //       return (
+    //         <Restaurant
+    //             id={restaurant._id}
+    //             location={restaurant.location}
+    //             key={restaurant._id}
+    //         />
+    //       );
+    //     });
+    //   }
 
 
     return (

@@ -12,7 +12,7 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
  
  
-// This section will help you get a list of all the records.
+// This section will help you get a list of all the restaurants.
 recordRoutes.route("/record").get(function (req, res) {
  let db_connect = dbo.getDb("hubgrub_full_db");
  db_connect
@@ -24,31 +24,20 @@ recordRoutes.route("/record").get(function (req, res) {
    });
 });
  
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
- let db_connect = dbo.getDb();
- let myquery = { _id: ObjectId(req.params.id) };
- db_connect
-   .collection("restaurant")
-   .findOne(myquery, function (err, result) {
-     if (err) throw err;
-     res.json(result);
-   });
-});
- 
-// This section will help you create a new record.
+// This section will help you create a new restaurant.
 recordRoutes.route("/record/add").post(function (req, response) {
- let db_connect = dbo.getDb();
- let myobj = {
-   location: req.body.location,
-   revenue: req.body.revenue,
-   cost: req.body.cost,
- };
- db_connect.collection("restaurant").insertOne(myobj, function (err, res) {
-   if (err) throw err;
-   response.json(res);
+  let db_connect = dbo.getDb();
+  let myobj = {
+    location: req.body.location,
+    revenue: req.body.revenue,
+    cost: req.body.cost,
+  };
+  db_connect.collection("restaurant").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
  });
-});
+
 
 // This section will help you create a new ingredient.
 recordRoutes.route("/ingredient/add").post(function (req, response) {
@@ -62,6 +51,27 @@ recordRoutes.route("/ingredient/add").post(function (req, response) {
     response.json(res);
   });
  });
+
+
+
+
+
+
+ 
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(function (req, res) {
+ let db_connect = dbo.getDb();
+ let myquery = { _id: ObjectId(req.params.id) };
+ db_connect
+   .collection("restaurant")
+   .findOne(myquery, function (err, result) {
+     if (err) throw err;
+     res.json(result);
+   });
+});
+ 
+
+
  
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
