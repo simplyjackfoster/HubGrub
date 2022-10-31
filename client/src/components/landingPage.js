@@ -60,6 +60,7 @@ export default function LandingPage() {
 
         // navigate the to home page for the selected restaurant
         navigate("/home/" + location.value);
+
     }
 
     return (
