@@ -3,9 +3,9 @@ import { useNavigate } from "react-router";
  
 export default function Create() {
  const [form, setForm] = useState({
-   name: "",
-   position: "",
-   level: "",
+   location: "",
+   revenue: "",
+   cost: "",
  });
  const navigate = useNavigate();
  
@@ -35,77 +35,50 @@ export default function Create() {
      return;
    });
  
-   setForm({ name: "", position: "", level: "" });
+   setForm({ location: "", revenue: "", cost: "" });
    navigate("/");
  }
  
  // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Make an Order</h3>
+     <h3>Add a new restaurant</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Restaurant Name</label>
+         <label htmlFor="location">Restaurant Location</label>
          <input
            type="text"
            className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           id="location"
+           value={form.location}
+           onChange={(e) => updateForm({ location: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="position">Food</label>
+         <label htmlFor="revenue">Revenue</label>
          <input
            type="text"
            className="form-control"
-           id="position"
+           id="revenue"
            value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           onChange={(e) => updateForm({ revenue: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="spiceOptions"
-             id="noSpice"
-             value="No Spice"
-             checked={form.level === "No Spice"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="noSpice" className="form-check-label">No Spice</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="spiceOptions"
-             id="mediumSpice"
-             value="Medium Spice"
-             checked={form.level === "Medium Spice"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="mediumSpice" className="form-check-label">Medium Spice</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="spiceOptions"
-             id="verySpicy"
-             value="Very Spicy"
-             checked={form.level === "Very Spicy"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="verySpicy" className="form-check-label">Very Spicy</label>
-         </div>
+         <label htmlFor="revenue">Cost</label>
+         <input
+           type="text"
+           className="form-control"
+           id="cost"
+           value={form.cost}
+           onChange={(e) => updateForm({ cost: e.target.value })}
+         />
        </div>
+       
        <div className="form-group">
          <input
            type="submit"
-           value="Submit Order"
+           value="Add a new restaurant"
            className="btn btn-primary"
          />
        </div>

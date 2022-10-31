@@ -30,7 +30,7 @@ export default function Navbar() {
          <ul className="navbar-nav ml-auto">
            <li className="nav-item">
              <NavLink className="nav-link" to="/create">
-               Make an Order
+             Add a new restaurant
              </NavLink>
            </li>
          </ul>

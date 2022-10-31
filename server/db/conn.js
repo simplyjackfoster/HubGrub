@@ -13,7 +13,7 @@ module.exports = {
       // Verify we got a good "db" object
       if (db)
       {
-        _db = db.db("orders_db");
+        _db = db.db("hubgrub_full_db");
         console.log("Successfully connected to MongoDB."); 
       }
       return callback(err);
