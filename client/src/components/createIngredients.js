@@ -23,7 +23,7 @@ export default function CreateIngredient() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch("http://localhost:5000/record/add", {
+   await fetch("http://localhost:5000/ingredient/add", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export default function CreateIngredient() {
      return;
    });
  
-   setForm({ location: "", revenue: "", cost: "" });
+   setForm({ name: "", quantity: ""});
    navigate("/");
  }
  
@@ -45,23 +45,23 @@ export default function CreateIngredient() {
      <h3>Record Ingredient Purchase</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="location">Enter Ingredient Purchased</label>
+         <label htmlFor="name">Enter Ingredient Purchased</label>
          <input
            type="text"
            className="form-control"
-           id="location"
-           value={form.ingredient}
-           onChange={(e) => updateForm({ location: e.target.value })}
+           id="name"
+           value={form.name}
+           onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="location">Enter Quantity</label>
+         <label htmlFor="quantity">Enter Quantity</label>
          <input
            type="text"
            className="form-control"
-           id="location"
-           value={form.ingredient}
-           onChange={(e) => updateForm({ location: e.target.value })}
+           id="quantity"
+           value={form.quantity}
+           onChange={(e) => updateForm({ quantity: e.target.value })}
          />
        </div>
        <div className="form-group">
