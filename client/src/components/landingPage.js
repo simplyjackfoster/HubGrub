@@ -88,11 +88,9 @@ export default function LandingPage() {
             </div>
 
             <div className="row">
-                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createIngredients")}>Change ingredient</button>
-                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/menu")}>Change menu</button>
-            
+                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createIngredients")}>Add ingredient</button>
+                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/menu")}>Add recipe</button>
             </div>
-        
         </div>
     );
 }

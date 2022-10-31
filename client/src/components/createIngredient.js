@@ -3,9 +3,10 @@ import { useNavigate } from "react-router";
  
 export default function CreateIngredient() {
  const [form, setForm] = useState({
-   location: "",
-   revenue: "",
-   cost: "",
+    name: "",
+    price: 0.00,
+    calories: 0,
+    units: "",
  });
  const navigate = useNavigate();
  
@@ -35,17 +36,17 @@ export default function CreateIngredient() {
      return;
    });
  
-   setForm({ name: "", quantity: ""});
+   setForm({ name: "", price: 0.00, calories: 0, units: ""});
    navigate("/");
  }
  
  // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Record Ingredient Purchase</h3>
+     <h3>Ingredients</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Enter Ingredient Purchased</label>
+         <label htmlFor="name">New ingredient name</label>
          <input
            type="text"
            className="form-control"
@@ -55,13 +56,33 @@ export default function CreateIngredient() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="quantity">Enter Quantity</label>
+         <label htmlFor="units">Enter units of measurement (ex: cups, pounds, units, ounces, etc.)</label>
          <input
            type="text"
            className="form-control"
-           id="quantity"
-           value={form.quantity}
-           onChange={(e) => updateForm({ quantity: e.target.value })}
+           id="units"
+           value={form.units}
+           onChange={(e) => updateForm({ units: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="price">Enter price per unit</label>
+         <input
+           type="text"
+           className="form-control"
+           id="price"
+           value={form.price}
+           onChange={(e) => updateForm({ price: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="calories">Enter calories per unit (approximation)</label>
+         <input
+           type="text"
+           className="form-control"
+           id="calories"
+           value={form.calories}
+           onChange={(e) => updateForm({ calories: e.target.value })}
          />
        </div>
        <div className="form-group">
