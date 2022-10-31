@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 // import { NavLink } from "react-router-dom";
+// import {location} from './landingPage';
+import { useParams } from "react-router";
+import { NavBar } from './navbar'
+
+
  
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
+
  
+const currLocation = ((document.URL).substring((document.URL).lastIndexOf("/")+1)).replace('%20',' ');
+console.log(currLocation);
+
 const Restaurant = (props) => (
     <option value={props.location.toString()}>{props.location.toString()}</option>
   );
@@ -15,6 +24,8 @@ export default function Homepage() {
     const [restaurants, setRestaurants] = useState([]);
 
     const navigate = useNavigate();
+    const params = useParams();
+
 
   
     // This method fetches the records from the database.
@@ -50,29 +61,25 @@ export default function Homepage() {
       }
 
 
-    // function to handle the on click event of the button
-    const handleSubmit = () => {
-        console.log("Button clicked");
-
-        const location = document.getElementById("location-dropdown");
-
-        console.log("Location: " + location.value);
-
-        // navigate the to home page for the selected restaurant
-        navigate("/home/" + location.value);
-    }
-
     return (
-
-
+        <div>
+        {NavBar()}
         <div className="container">
-            <div className="row">
-                <h1>HubGrub</h1>
                 {/* <img src="client/images/hubgrub-logo.jpg" alt="hubgrub-logo" /> */}
-                <h3>{}</h3>
-            </div>
+                {/* <h3>{location.value}</h3> */}
+                <h1>HUBGRUB @ {currLocation}</h1>
+                <br />
+                <div className="row" >
+                    <div className="col-6">
+                    <h2>Current Inventory Stock</h2>
+                    </div>
+                    <div className="col-6">
+                    <h2>Current Menu Items</h2>
+                    </div>
+                </div>
     
             
+        </div>
         </div>
     );
 }
