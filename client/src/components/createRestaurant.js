@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
  
-export default function Create() {
+export default function CreateRestaurant() {
  const [form, setForm] = useState({
    location: "",
-   revenue: "",
-   cost: "",
+   revenue: 0,
+   cost: 0,
  });
  const navigate = useNavigate();
  
@@ -52,26 +52,6 @@ export default function Create() {
            id="location"
            value={form.location}
            onChange={(e) => updateForm({ location: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="revenue">Revenue</label>
-         <input
-           type="text"
-           className="form-control"
-           id="revenue"
-           value={form.position}
-           onChange={(e) => updateForm({ revenue: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="revenue">Cost</label>
-         <input
-           type="text"
-           className="form-control"
-           id="cost"
-           value={form.cost}
-           onChange={(e) => updateForm({ cost: e.target.value })}
          />
        </div>
        
