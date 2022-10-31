@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import CreateRestaurant from "./components/createRestaurant";
+import CreateIngredient from "./components/createIngredients";
 import LandingPage from "./components/landingPage";
  
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/createRestaurant" element={<CreateRestaurant />} />
+        <Route path="/createIngredients" element={<CreateIngredient />} />
         <Route path="/edit/:id" element={<Edit />} />
       </Routes>
 

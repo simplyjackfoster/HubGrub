@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
  
-export default function CreateRestaurant() {
+export default function CreateIngredient() {
  const [form, setForm] = useState({
    location: "",
-   revenue: 0,
-   cost: 0,
+   revenue: "",
+   cost: "",
  });
  const navigate = useNavigate();
  
@@ -42,23 +42,32 @@ export default function CreateRestaurant() {
  // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Add a new restaurant</h3>
+     <h3>Record Ingredient Purchase</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="location">Restaurant Location</label>
+         <label htmlFor="location">Enter Ingredient Purchased</label>
          <input
            type="text"
            className="form-control"
            id="location"
-           value={form.location}
+           value={form.ingredient}
            onChange={(e) => updateForm({ location: e.target.value })}
          />
        </div>
-       
+       <div className="form-group">
+         <label htmlFor="location">Enter Quantity</label>
+         <input
+           type="text"
+           className="form-control"
+           id="location"
+           value={form.ingredient}
+           onChange={(e) => updateForm({ location: e.target.value })}
+         />
+       </div>
        <div className="form-group">
          <input
            type="submit"
-           value="Add a new restaurant"
+           value="Add a new ingredient"
            className="btn btn-primary"
          />
        </div>
