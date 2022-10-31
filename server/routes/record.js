@@ -49,6 +49,19 @@ recordRoutes.route("/record/add").post(function (req, response) {
    response.json(res);
  });
 });
+
+// This section will help you create a new ingredient.
+recordRoutes.route("/ingredient/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    name: req.body.name,
+    quantity: req.body.quantity,
+  };
+  db_connect.collection("ingredient").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+ });
  
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
