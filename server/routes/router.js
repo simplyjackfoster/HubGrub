@@ -23,6 +23,30 @@ router.route("/restaurant").get(function (req, res) {
      res.json(result);
    });
 });
+
+// This section will help you get a list of all the ingredients.
+router.route("/ingredient").get(function (req, res) {
+  let db_connect = dbo.getDb("hubgrub_full_db");
+  db_connect
+    .collection("ingredient")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
+
+ // This section will help you get a list of all the menu items.
+router.route("/food").get(function (req, res) {
+  let db_connect = dbo.getDb("hubgrub_full_db");
+  db_connect
+    .collection("food")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
  
 // This section will help you get a single restaurant by id
 router.route("/restaurant/:id").get(function (req, res) {
