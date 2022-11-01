@@ -14,10 +14,8 @@ const Ingredient = (props) => (
 );
 
 const Food = (props) => (
-    <li>{props.name.toString()} : ${props.price.toString()}</li>
+    <li>{props.name.toString()}: ${props.price.toString()}</li>
 );
-
-
 
 export default function Homepage() {
 
@@ -44,7 +42,7 @@ export default function Homepage() {
 
 
 
-    async function deleteRecord(id) {
+    async function deleteRestaurant(id) {
         await fetch(`http://localhost:5000/${id}`, {
             method: "DELETE"
         });
@@ -117,6 +115,8 @@ export default function Homepage() {
             );
         });
     }
+
+
     return (
         <div>
             {NavBar()}
@@ -127,7 +127,7 @@ export default function Homepage() {
                     </div>
                     <div className="col-6">
                         <button className="btn btn-danger" style={{ marginTop: "20px" }} onClick={() => {
-                            deleteRecord(currID);
+                            deleteRestaurant(currID);
                         }}>Close this Location</button>
                     </div>
                 </div>

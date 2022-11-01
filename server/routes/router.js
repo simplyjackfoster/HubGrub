@@ -125,7 +125,7 @@ router.route("/update/:id").post(function (req, response) {
    });
 });
  
-// This section will help you delete a record
+// This section will help you delete a restaurant
 router.route("/:id").delete((req, response) => {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };

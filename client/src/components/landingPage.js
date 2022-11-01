@@ -6,8 +6,8 @@ import { useNavigate } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
  
 const Restaurant = (props) => (
-    <option value={props.id.toString()}>{props.location.toString()}</option>
-  );
+  <option value={props.id.toString()}>{props.location.toString()}</option>
+);
 
 
 export default function LandingPage() {
@@ -17,7 +17,7 @@ export default function LandingPage() {
     const navigate = useNavigate();
 
   
-    // This method fetches the records from the database.
+    // This method fetches the restaurants from the database.
     useEffect(() => {
       async function getRestaurants() {
         const response = await fetch(`http://localhost:5000/restaurant/`);
@@ -38,16 +38,16 @@ export default function LandingPage() {
     }, [restaurants.length]);
 
     function restaurantList() {
-        return restaurants.map((restaurant) => {
-          return (
-            <Restaurant
-                id={restaurant._id}
-                location={restaurant.location}
-                key={restaurant._id}
-            />
-          );
-        });
-      }
+      return restaurants.map((restaurant) => {
+        return (
+          <Restaurant
+              id={restaurant._id}
+              location={restaurant.location}
+              key={restaurant._id}
+          />
+        );
+      });
+    }
 
 
     // function to handle the on click event of the button
@@ -80,7 +80,7 @@ export default function LandingPage() {
             </div>
 
             <div className="row">
-                <button type="button" className="btn btn-light" onClick={() => navigate("/createRestaurant")}>Add a new restaurant</button>
+                <button type="button" className="btn btn-light" onClick={() => navigate("/createRestaurant")}>Add a new restaurant location</button>
                 
             </div>
             <div className="row">
@@ -89,7 +89,7 @@ export default function LandingPage() {
 
             <div className="row">
                 <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createIngredient")}>Add ingredient</button>
-                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createFood")}>Add recipe</button>
+                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createFood")}>Add recipe to menu</button>
             </div>
         </div>
     );
