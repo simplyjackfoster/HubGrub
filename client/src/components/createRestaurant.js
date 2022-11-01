@@ -24,8 +24,8 @@ export default function CreateRestaurant() {
     });
   }
 
-  // This function will handle the submission.
-  async function onSubmit(e) {
+  // This function will add the restaurant to the database.
+  async function addRestaurant(e) {
     e.preventDefault();
   
     // When a post request is sent to the create url, we'll add a new record to the database.
@@ -88,7 +88,7 @@ export default function CreateRestaurant() {
       <ul>
        {restaurantList()}
       </ul>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={addRestaurant}>
         <div className="form-group">
           <label htmlFor="location">New restaurant location</label>
           <input
