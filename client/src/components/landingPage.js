@@ -56,7 +56,8 @@ export default function LandingPage() {
 
         const location = document.getElementById("location-dropdown");
 
-        console.log("Location: " + location.value);
+        //console.log("id: " + location.value);
+        
 
         // navigate the to home page for the selected restaurant
         navigate("/home/" + location.value);

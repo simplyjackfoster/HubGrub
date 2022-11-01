@@ -15,10 +15,10 @@ export function NavBar() {
 
 	return (
 		<div>
-      <img className="imglogo" style={{ textAlign: "left", width: "", height: "" }} src={logo} alt="Logo2" />
+      <a href="/"><img className="imglogo" style={{ textAlign: "left", width: "", height: "" }} src={logo} alt="Logo2" /></a>
 			<section className="navigation">
 				<div className="nav-container">
-					<div class="brand">
+					<div className="brand">
 
 					</div>
 					<nav>
