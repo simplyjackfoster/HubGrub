@@ -1,0 +1,1 @@
+// Use this file as a common place for requests involving the food collection.
