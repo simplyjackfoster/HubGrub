@@ -56,40 +56,35 @@ export default function LandingPage() {
 
         const location = document.getElementById("location-dropdown");
 
-        
-
         // navigate the to home page for the selected restaurant
         navigate("/home/" + location.value);
 
     }
 
     return (
-
-
         <div className="container">
-            <div className="row">
+            <div className="row" style={{ margin: 10}}>
                 <h1>HubGrub</h1>
                 <h3>Choose the restaurant location</h3>
             </div>
     
-    
-            <div className="row">    
+            <div className="row" style={{ margin: 10}}>    
                 <select id="location-dropdown">
                     {restaurantList()}
                 </select>
             </div>
 
-            <div className="row">
-                <button type="button" className="btn btn-light" onClick={() => navigate("/createRestaurant")}>Add a new restaurant location</button>
-                
-            </div>
-            <div className="row">
+            <div className="row" style={{ margin: 10}}>
                 <button type="button" className="btn btn-primary" onClick={handleSubmit}>Go to home page</button>
             </div>
 
-            <div className="row">
-                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createIngredient")}>Add ingredient</button>
-                <button type="button" className="col-6 btn btn-light" onClick={() => navigate("/createFood")}>Add recipe to menu</button>
+            <div className="row" style={{ margin: 10}}>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate("/createRestaurant")}>Add a new restaurant location</button>
+            </div>
+
+            <div className="row" style={{ margin: 10}}>
+                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/createIngredient")}>Add ingredient</button>
+                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/createFood")}>Add recipe to menu</button>
             </div>
         </div>
     );
