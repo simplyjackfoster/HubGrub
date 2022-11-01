@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
  
 const Restaurant = (props) => (
-    <option value={props.location.toString()}>{props.location.toString()}</option>
+    <option value={props.id.toString()}>{props.location.toString()}</option>
   );
 
 
@@ -56,7 +56,6 @@ export default function LandingPage() {
 
         const location = document.getElementById("location-dropdown");
 
-        //console.log("id: " + location.value);
         
 
         // navigate the to home page for the selected restaurant
@@ -70,7 +69,6 @@ export default function LandingPage() {
         <div className="container">
             <div className="row">
                 <h1>HubGrub</h1>
-                {/* <img src="client/images/hubgrub-logo.jpg" alt="hubgrub-logo" /> */}
                 <h3>Choose the restaurant location</h3>
             </div>
     
