@@ -24,7 +24,7 @@ export default function Homepage() {
     const [ingredients, setIngredients] = useState([]);
     const [foods, setFoods] = useState([]);
     const [location, setLocation] = useState();
-    const [records, setRecords] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
 
     const currID = ((document.URL).substring((document.URL).lastIndexOf("/") + 1)).replace('%20', ' ');
     console.log(currID);
@@ -43,12 +43,12 @@ export default function Homepage() {
 
 
     async function deleteRestaurant(id) {
-        await fetch(`http://localhost:5000/${id}`, {
+        await fetch(`http://localhost:5000/restaurant/${id}`, {
             method: "DELETE"
         });
 
-        const newRecords = records.filter((el) => el._id !== id);
-        setRecords(newRecords);
+        const updatedRestaurants = restaurants.filter((el) => el._id !== id);
+        setRestaurants(updatedRestaurants);
         navigate("/");
     }
 

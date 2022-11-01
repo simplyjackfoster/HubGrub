@@ -84,7 +84,7 @@ export default function LandingPage() {
                 
             </div>
             <div className="row">
-                <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                <button type="button" className="btn btn-primary" onClick={handleSubmit}>Go to home page</button>
             </div>
 
             <div className="row">
