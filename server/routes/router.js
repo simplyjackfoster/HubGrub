@@ -59,6 +59,19 @@ router.route("/restaurant/:id").get(function (req, res) {
      res.json(result);
    });
 });
+
+// This section will help you get a restaurant grouping by revenue
+router.route("/restaurant/:low/:high").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { revenue: {$gte: parseInt(req.params.low), $lte: parseInt(req.params.high)} };
+  db_connect
+    .collection("restaurant")
+    .find(myquery)
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
  
 // This section will help you create a new restaurant.
 router.route("/restaurant/add").post(function (req, response) {
@@ -90,7 +103,31 @@ router.route("/ingredient/add").post(function (req, response) {
   });
  });
 
+ // This section will help you get a ingredient grouping by price
+router.route("/ingredient/:low/:high").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { price: {$gte: parseInt(req.params.low), $lte: parseInt(req.params.high)} };
+  db_connect
+    .collection("ingredient")
+    .find(myquery)
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
 
+ // This section will help you get a food grouping by price
+ router.route("/food/:low/:high").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { price: {$gte: parseInt(req.params.low), $lte: parseInt(req.params.high)} };
+  db_connect
+    .collection("food")
+    .find(myquery)
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
  // This section will help you create a new recipe.
 router.route("/food/add").post(function (req, response) {
   let db_connect = dbo.getDb();
