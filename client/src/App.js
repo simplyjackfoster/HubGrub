@@ -16,6 +16,7 @@ import CreateFood from "./components/createFood";
 import ViewRestaurant from "./components/viewRestaurant";
 import ViewIngredient from "./components/viewIngredient";
 import ViewFood from "./components/viewFood";
+import FoodOrder from "./components/foodOrder";
  
 const App = () => {
  return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/purchaseIngredient" element={<PurchaseIngredient />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/home/:location" element={<Homepage />} />
+        <Route path="/order" element={<FoodOrder />} />
       </Routes>
 
    </div>

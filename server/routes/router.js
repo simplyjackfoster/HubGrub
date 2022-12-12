@@ -24,6 +24,8 @@ router.route("/restaurant").get(function (req, res) {
    });
 });
 
+
+
 // This section will help you get a list of all the ingredients.
 router.route("/ingredient").get(function (req, res) {
   let db_connect = dbo.getDb("hubgrub_full_db");
@@ -172,5 +174,19 @@ router.route("/restaurant/:id").delete((req, response) => {
    response.json(obj);
  });
 });
+
+// This section will help you create a new order.
+router.route("/order/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    name: req.body.name,
+    food: req.body.food,
+  };
+  db_connect.collection("order").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+ });
+ 
  
 module.exports = router;
