@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
  
 const Food = (props) => (
   <li>{props.name.toString()}: ${props.price.toString()}</li>
@@ -9,14 +9,21 @@ const Food = (props) => (
 export default function ViewFood() {
     // state of parameters
     const [params, setParams] = useState({
-        minimumPrice: 0.00,
-        maximumPrice: 0.00,
+        minimumPrice: "",
+        maximumPrice: "",
     });
+
+    // state of minimum price
+    const [minPrice, setMinPrice] = useState(0.00);
+
+    // state of maximum price
+    const [maxPrice, setMaxPrice] = useState(0.00);
 
     // list of foods state
     const [foods, setFoods] = useState([]);
 
-    const navigate = useNavigate();
+    // navigation
+    // const navigate = useNavigate();
 
     // These methods will update the state properties.
     function updateForm(value) {
@@ -63,7 +70,11 @@ export default function ViewFood() {
     // This useEffect will filter the list of foods based on the parameters.
     useEffect(() => {
         async function getFoodsByPrice() {
-            const response = await fetch(`http://localhost:5000/food/`);
+            // set the minimum price and maximum price states to the values from the params or 0 if the value is empty
+            setMinPrice(params.minimumPrice === "" ? 0 : params.minimumPrice.trim());
+            setMaxPrice(params.maximumPrice === "" ? 0 : params.maximumPrice.trim());
+
+            const response = await fetch(`http://localhost:5000/food/${minPrice}/${maxPrice}`);
             
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -78,17 +89,26 @@ export default function ViewFood() {
         getFoodsByPrice();
 
         return;
-    }, [foods.length]);
+    }, [foods.length, maxPrice, minPrice, params.maximumPrice, params.minimumPrice]);
 
     // this function will display the list of foods by price
     function foodListByPrice() {
+        // display error message if minimum price is greater than maximum price
+        if (minPrice > maxPrice) {
+            return (
+                <div>
+                    <h4 style={{color: "red"}}>Error: Minimum price cannot be greater than maximum price</h4>
+                </div>
+            );
+        }
+
         return foods.map((food) => {
             return (
                 <Food
                     id={food._id}
                     name={food.name}
-                    key={food._id}
                     price={food.price}
+                    key={food._id}
                 />
             );
         });
@@ -98,41 +118,48 @@ export default function ViewFood() {
     // This following section will display the food that takes the input from the user.
     return (
         <div>
-            <h3>Menu</h3>
-            <form onSubmit={() => updateForm({ minimumPrice: params.minimumPrice, maximumPrice: params.maximumPrice})}>
-                <div className="form-group">
-                    <label htmlFor="minimumPrice">Minimum price</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="minimumPrice"
-                        value={params.minimumPrice}
-                        onChange={(e) => updateForm({ minimumPrice: e.target.value })}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="maximumPrice">Maximum price</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="maximumPrice"
-                        value={params.maximumPrice}
-                        onChange={(e) => updateForm({ maximumPrice: e.target.value })}
-                    />
-                </div>
+            <div className="container">
+                <h3>Menu</h3>
+                <form onSubmit={() => updateForm({ minimumPrice: params.minimumPrice, maximumPrice: params.maximumPrice})}>
+                    <div className="form-group">
+                        <label htmlFor="minimumPrice">Minimum price</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="minimumPrice"
+                            value={params.minimumPrice}
+                            onChange={(e) => updateForm({ minimumPrice: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="maximumPrice">Maximum price</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="maximumPrice"
+                            value={params.maximumPrice}
+                            onChange={(e) => updateForm({ maximumPrice: e.target.value })}
+                        />
+                    </div>
 
-                <div className="food-group">
-                    <input
-                        type="submit"
-                        value="Update price range"
-                        className="btn btn-primary"
-                    />
-                </div>
-            </form>
-            <h3>Menu items with price between ${params.minimumPrice} and ${params.maximumPrice}</h3>
-            <ul>
-                {foodListByPrice()}
-            </ul>
+                    {/* <div className="food-group">
+                        <input
+                            type="submit"
+                            value="Update price range"
+                            className="btn btn-primary"
+                        />
+                    </div> */}
+                </form>
+            </div>
+
+            <br />
+            
+            <div className="container">
+                <h3>Menu items with price between ${minPrice} and ${maxPrice}</h3>
+                <ul>
+                    {foodListByPrice()}
+                </ul>
+            </div>
         </div>
     );  
 }
