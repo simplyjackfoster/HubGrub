@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 // import { NavLink } from "react-router-dom";
+import logo from './HUBGRUB.png';
+
  
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
@@ -12,10 +14,23 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 export default function FoodOrder() {
+    const navigate = useNavigate();
+
 
     const [foodOptions, setFoodOptions] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
   const [name, setName] = useState('');
+  const [order, setOrder] = useState({
+    name: "",
+    food: "",
+  });
+
+
+  function updateForm(value) {
+    return setOrder((prev) => {
+      return { ...prev, ...value };
+    });
+  }
 
   useEffect(() => {
     async function getFoods() {
@@ -54,33 +69,53 @@ export default function FoodOrder() {
     setSelectedFood(event.target.value);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    // Submit the food order to the backend
-    fetch('/api/submit-order', {
-      method: 'POST',
-      body: JSON.stringify({ name, selectedFood }),
+  async function addOrder(e) {
+    e.preventDefault();
+  
+    // When a post request is sent to the create url, we'll add a new record to the database.
+    const newOrder = { ...order };
+  
+    await fetch("http://localhost:5000/order/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newOrder),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
     });
-  };
 
+    console.log(JSON.stringify(newOrder));
+   
+    setOrder({ name: "", food: "" });
+    navigate("/");
+  }
   console.log(foodOptions);
 
   return (
 
     <div>
-    <div className="row" style={{ margin: 10}}>
-    <h1>HubGrub</h1>
-    </div>
-    <form onSubmit={handleSubmit}>
+       <a href="/"><img className="imglogo" style={{ textAlign: "left", width: "", height: "" }} src={logo} alt="Logo2" /></a>
+<br /> <br /> <br /> <br /> <br /> 
+    <form onSubmit={addOrder}>
       <label>
         Name:
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input
+            type="text"
+            className="form-control"
+            id="name"
+            value={order.name}
+            onChange={(e) => updateForm({ name: e.target.value })}
+          />
       </label>
       <label>
         Food:
         <div className="row" style={{ margin: 10}}>    
-                <select id="location-dropdown">
+                <select id="location-dropdown" 
+                value={order.food}
+                onChange={(e) => updateForm({ food: e.target.value })}>
                     {foodList()}
                 </select>
             </div>

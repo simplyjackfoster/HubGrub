@@ -174,5 +174,19 @@ router.route("/restaurant/:id").delete((req, response) => {
    response.json(obj);
  });
 });
+
+// This section will help you create a new order.
+router.route("/order/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    name: req.body.name,
+    food: req.body.food,
+  };
+  db_connect.collection("order").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+ });
+ 
  
 module.exports = router;
