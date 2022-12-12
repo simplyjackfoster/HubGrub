@@ -79,12 +79,21 @@ export default function LandingPage() {
             </div>
 
             <div className="row" style={{ margin: 10}}>
-                <button type="button" className="btn btn-secondary" onClick={() => navigate("/createRestaurant")}>Add a new restaurant location</button>
+                <button type="button" className="btn btn-outline-secondary" onClick={() => navigate("/createRestaurant")}>Add a new restaurant location</button>
             </div>
 
             <div className="row" style={{ margin: 10}}>
-                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/createIngredient")}>Add ingredient</button>
-                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/createFood")}>Add recipe to menu</button>
+                <button type="button" className="col-6 btn btn-outline-secondary" onClick={() => navigate("/createIngredient")}>Add ingredient</button>
+                <button type="button" className="col-6 btn btn-outline-secondary" onClick={() => navigate("/createFood")}>Add menu item</button>
+            </div>
+
+            <div className="row" style={{ margin: 10}}>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate("/viewRestaurant")}>View restaurant locations</button>
+            </div>
+
+            <div className="row" style={{ margin: 10}}>
+                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/viewIngredient")}>View ingredients</button>
+                <button type="button" className="col-6 btn btn-secondary" onClick={() => navigate("/viewFood")}>View menu items</button>
             </div>
         </div>
     );
