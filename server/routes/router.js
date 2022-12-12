@@ -24,6 +24,8 @@ router.route("/restaurant").get(function (req, res) {
    });
 });
 
+
+
 // This section will help you get a list of all the ingredients.
 router.route("/ingredient").get(function (req, res) {
   let db_connect = dbo.getDb("hubgrub_full_db");

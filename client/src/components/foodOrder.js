@@ -6,8 +6,8 @@ import { useNavigate } from "react-router";
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
  
-const Restaurant = (props) => (
-  <option value={props.id.toString()}>{props.location.toString()}</option>
+ const Food = (props) => (
+  <option>{props.name.toString()} ${props.price.toString()}</option>
 );
 
 
@@ -18,12 +18,34 @@ export default function FoodOrder() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    // Fetch the list of food options from the backend
-    fetch('/api/food-options')
-      .then(response => response.json())
-      .then(data => setFoodOptions(data));
-  }, []);
+    async function getFoods() {
+      const response = await fetch(`http://localhost:5000/food/`);
 
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const foods = await response.json();
+      setFoodOptions(foods);
+    }
+
+    getFoods();
+
+    return;
+  }, [foodOptions.length]);
+
+  function foodList() {
+    return foodOptions.map((food) => {
+      return (
+        <Food
+            name={food.name}
+            price={food.price}
+        />
+      );
+    });
+  }
   const handleNameChange = event => {
     setName(event.target.value);
   };
@@ -42,6 +64,8 @@ export default function FoodOrder() {
     });
   };
 
+  console.log(foodOptions);
+
   return (
 
     <div>
@@ -55,13 +79,11 @@ export default function FoodOrder() {
       </label>
       <label>
         Food:
-        <select value={selectedFood} onChange={handleFoodChange}>
-          {foodOptions.map(foodOption => (
-            <option key={foodOption.id} value={foodOption.value}>
-              {foodOption.label}
-            </option>
-          ))}
-        </select>
+        <div className="row" style={{ margin: 10}}>    
+                <select id="location-dropdown">
+                    {foodList()}
+                </select>
+            </div>
       </label>
       <button type="submit">Submit Order</button>
     </form>
