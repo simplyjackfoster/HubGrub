@@ -9,7 +9,7 @@ import logo from './HUBGRUB.png';
 import "bootstrap/dist/css/bootstrap.css";
  
  const Food = (props) => (
-  <option>{props.name.toString()} ${props.price.toString()}</option>
+  <option>{props.name.toString()} </option>
 );
 
 
@@ -23,6 +23,7 @@ export default function FoodOrder() {
   const [order, setOrder] = useState({
     name: "",
     food: "",
+    
   });
 
 
