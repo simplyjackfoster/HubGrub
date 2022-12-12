@@ -13,6 +13,7 @@ import LandingPage from "./components/landingPage";
 import Homepage from "./components/home";
 import PurchaseIngredient from "./components/purchaseIngredient";
 import CreateFood from "./components/createFood";
+import FoodOrder from "./components/foodOrder";
  
 const App = () => {
  return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/createFood" element={<CreateFood />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/home/:location" element={<Homepage />} />
+        <Route path="/order" element={<FoodOrder />} />
       </Routes>
 
    </div>
