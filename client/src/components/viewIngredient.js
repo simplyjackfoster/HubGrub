@@ -35,7 +35,7 @@ export default function ViewIngredient() {
     // // This useEffect will fetch the list of ingredients from the database.
     // useEffect(() => {
     //     async function getIngredients() {
-    //         const response = await fetch(`http://localhost:8080/ingredient/`);
+    //         const response = await fetch(`http://104.198.248.165:8080/ingredient/`);
             
     //         if (!response.ok) {
     //             const message = `An error occurred: ${response.statusText}`;
@@ -72,7 +72,7 @@ export default function ViewIngredient() {
             setMinPrice(params.minimumPrice === "" ? 0 : params.minimumPrice.trim());
             setMaxPrice(params.maximumPrice === "" ? 0 : params.maximumPrice.trim());
 
-            const response = await fetch(`http://localhost:8080/ingredient/${minPrice}/${maxPrice}`);
+            const response = await fetch(`http://104.198.248.165:8080/ingredient/${minPrice}/${maxPrice}`);
             
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;

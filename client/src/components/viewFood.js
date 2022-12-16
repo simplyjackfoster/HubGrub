@@ -36,7 +36,7 @@ export default function ViewFood() {
 
     // useEffect(() => {
     //   async function getFoods() {
-    //       const response = await fetch(`http://localhost:8080/food/`);
+    //       const response = await fetch(`http://104.198.248.165:8080/food/`);
 
     //       if (!response.ok) {
     //           const message = `An error occurred: ${response.statusText}`;
@@ -74,7 +74,7 @@ export default function ViewFood() {
             setMinPrice(params.minimumPrice === "" ? 0 : params.minimumPrice.trim());
             setMaxPrice(params.maximumPrice === "" ? 0 : params.maximumPrice.trim());
 
-            const response = await fetch(`http://localhost:8080/food/${minPrice}/${maxPrice}`);
+            const response = await fetch(`http://104.198.248.165:8080/food/${minPrice}/${maxPrice}`);
             
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
