@@ -31,7 +31,7 @@ export default function CreateRestaurant() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newRestaurant = { ...restaurant };
   
-    await fetch("http://127.0.0.1/8:8080/restaurant/add", {
+    await fetch("http://localhost:8080/restaurant/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export default function CreateRestaurant() {
   // This method fetches the restaurants from the database.
   useEffect(() => {
     async function getRestaurants() {
-      const response = await fetch(`http://127.0.0.1/8:8080/restaurant/`);
+      const response = await fetch(`http://localhost:8080/restaurant/`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
