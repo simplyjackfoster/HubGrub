@@ -20,7 +20,7 @@ export default function LandingPage() {
     // This method fetches the restaurants from the database.
     useEffect(() => {
       async function getRestaurants() {
-        const response = await fetch(`http://104.198.248.165:8080/restaurant/`);
+        const response = await fetch(`http://104.154.34.49:8080/restaurant/`);
   
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
