@@ -31,7 +31,7 @@ export default function CreateFood() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newFood = { ...food };
   
-    await fetch("http://127.0.0.1/8:8080/food/add", {
+    await fetch("http://localhost:8080/food/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export default function CreateFood() {
 
   useEffect(() => {
     async function getFoods() {
-        const response = await fetch(`http://127.0.0.1/8:8080/food/`);
+        const response = await fetch(`http://localhost:8080/food/`);
 
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
