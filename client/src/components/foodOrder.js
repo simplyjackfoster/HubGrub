@@ -35,7 +35,7 @@ export default function FoodOrder() {
 
   useEffect(() => {
     async function getFoods() {
-      const response = await fetch(`http://localhost:5000/food/`);
+      const response = await fetch(`http://localhost:8080/food/`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -76,7 +76,7 @@ export default function FoodOrder() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newOrder = { ...order };
   
-    await fetch("http://localhost:5000/order/add", {
+    await fetch("http://localhost:8080/order/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

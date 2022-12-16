@@ -30,7 +30,7 @@ export default function Homepage() {
     console.log(currID);
 
     async function getRestaurant(id) {
-        const response = await fetch(`http://localhost:5000/restaurant/${id}`);
+        const response = await fetch(`http://localhost:8080/restaurant/${id}`);
 
         const restaurant = await response.json();
         console.log(JSON.stringify(restaurant));
@@ -43,7 +43,7 @@ export default function Homepage() {
 
 
     async function deleteRestaurant(id) {
-        await fetch(`http://localhost:5000/restaurant/${id}`, {
+        await fetch(`http://localhost:8080/restaurant/${id}`, {
             method: "DELETE"
         });
 
@@ -55,7 +55,7 @@ export default function Homepage() {
 
     useEffect(() => {
         async function getFoods() {
-            const response = await fetch(`http://localhost:5000/food/`);
+            const response = await fetch(`http://localhost:8080/food/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -74,7 +74,7 @@ export default function Homepage() {
 
     useEffect(() => {
         async function getIngredients() {
-            const response = await fetch(`http://localhost:5000/ingredient/`);
+            const response = await fetch(`http://localhost:8080/ingredient/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
