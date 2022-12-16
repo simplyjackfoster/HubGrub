@@ -22,7 +22,7 @@ export default function PurchaseIngredient() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch("http://localhost:8080/ingredient/add", {
+   await fetch("http://104.198.248.165:8080/ingredient/add", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",

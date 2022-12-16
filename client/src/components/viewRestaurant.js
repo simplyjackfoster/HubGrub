@@ -35,7 +35,7 @@ export default function ViewRestaurant() {
     // // This method fetches the restaurants from the database.
     // useEffect(() => {
     //   async function getRestaurants() {
-    //     const response = await fetch(`http://localhost:8080/restaurant/`);
+    //     const response = await fetch(`http://104.198.248.165:8080/restaurant/`);
 
     //     if (!response.ok) {
     //       const message = `An error occurred: ${response.statusText}`;
@@ -74,7 +74,7 @@ export default function ViewRestaurant() {
             setMinRevenue(params.minimumRevenue === "" ? 0 : params.minimumRevenue.trim());
             setMaxRevenue(params.maximumRevenue === "" ? 0 : params.maximumRevenue.trim());
 
-            const response = await fetch(`http://localhost:8080/restaurant/${minRevenue}/${maxRevenue}`);
+            const response = await fetch(`http://104.198.248.165:8080/restaurant/${minRevenue}/${maxRevenue}`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
