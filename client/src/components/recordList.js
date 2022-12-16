@@ -25,7 +25,7 @@ export default function RecordList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://104.198.248.165:8080/record/`);
+      const response = await fetch(`http://104.154.34.49:8080/record/`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -44,7 +44,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`http://104.198.248.165:8080/${id}`, {
+    await fetch(`http://104.154.34.49:8080/${id}`, {
       method: "DELETE"
     });
 

@@ -32,7 +32,7 @@ export default function CreateIngredient() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newIngredient = { ...form };
   
-    await fetch("http://104.198.248.165:8080/ingredient/add", {
+    await fetch("http://104.154.34.49:8080/ingredient/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export default function CreateIngredient() {
 
   useEffect(() => {
     async function getIngredients() {
-      const response = await fetch(`http://104.198.248.165:8080/ingredient/`);
+      const response = await fetch(`http://104.154.34.49:8080/ingredient/`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
